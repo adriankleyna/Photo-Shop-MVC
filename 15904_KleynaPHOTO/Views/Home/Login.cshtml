@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var returnUrl = ViewData["ReturnUrl"] as string;
+    var error = TempData["Error"] as string;
+}
+
+<h2 class="text-center mt-5 mb-5">Panel logowania</h2>
+
+
+<div class="container">
+    <form action="/login?ReturnUrl=@System.Net.WebUtility.UrlEncode(returnUrl)" method="post">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col mb-2">
+                <label for="loginInput" class="form-label">Nazwa użytkownika</label>
+                <input type="text" class="form-control" id="loginInput" name="username" placeholder="Podaj login">
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col mb-5 mt-2">
+                <label for="passwordInput" class="form-label">Hasło</label>
+                <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Podaj hasło">
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col text-center">
+                <button type="submit" class="btn btn-outline-success">Zaloguj</button>
+            </div>
+            <div class="col"></div>
+        </div>
+    </form>
+    @if (!string.IsNullOrEmpty(error))
+    {
+        <div class="container-fluid mt-4">
+            <h3 class="alert-danger text-center" style="padding: 1rem;">@error</h3>
+        </div>
+    }
+</div>
+
+
