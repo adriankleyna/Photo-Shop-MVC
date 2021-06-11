@@ -73,6 +73,7 @@ namespace _15904_KleynaPHOTO
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
