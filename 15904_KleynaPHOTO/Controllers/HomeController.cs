@@ -40,12 +40,6 @@ namespace _15904_KleynaPHOTO.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
-        public IActionResult AllProducts()
-        {
-            return View();
-        }
-
         [Authorize]
         public IActionResult Secured()
         {

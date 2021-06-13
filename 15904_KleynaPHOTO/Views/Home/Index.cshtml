@@ -1,8 +1,22 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Strona Główna";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section AddToHead {
+    <link href="@Url.Content("~/css/mainPage.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="container-fluid text-center no-gutters headerPhoto">
+    <img class="img-fluid" src="~/images/headerPhoto.jpg" alt="Fotograf z wycelowanym obiektywem"/>
 </div>
+
+<div class="text-center">
+    <h1 class="display-4 mt-4">Uśmiech!</h1>
+    <h1 class="display-4">Witaj na stronie FotoKlatka.pl</h1>
+    <div class="container mt-4 pb-lg-5 pb-sm-1">
+        <div class="font-italic register_info">Jeśli nie jesteś jeszcze naszym Klientem zapraszamy do rejestracji</div>
+        <p><a asp-area="" asp-controller="Home" asp-action="Privacy">Zarejestruj się</a></p>
+    </div>
+</div>
+
+
