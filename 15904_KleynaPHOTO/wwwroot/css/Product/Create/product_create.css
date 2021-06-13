@@ -1,0 +1,10 @@
+﻿body {
+}
+
+.addProductLabel {
+    padding: 2rem;
+    background: linear-gradient(217deg, rgba(0, 119, 248, 0.93), #ffffff);
+    border-radius: 2rem;
+    box-shadow: rgba(0,0,0,0.1) 10px 10px ;
+    margin: 5rem 10rem;
+}

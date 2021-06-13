@@ -1,0 +1,165 @@
+﻿@model _15904_KleynaPHOTO.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    var producent = ViewBag.DaneProducenci;
+    var podkategoria = ViewBag.DanePodkategorie;
+
+}
+
+@section AddToHead {
+    <link href="@Url.Content("~/css/Product/Create/product_create.css")" rel="stylesheet" type="text/css" />
+}
+
+
+<h2 class="text-center addProductLabel">Dodawanie produktu</h2>
+
+<div class="container-fluid mb-2">
+    <div class="row">
+        <div class="col-6">
+            <h4 class="mt-3">Producenci</h4>
+            <table class="table table-bordered table-striped" style="margin-top: 1rem;">
+                <tr>
+                    <th>Id</th>
+                    <th>Producent</th>
+                </tr>
+                @for (int i = 0; i < producent.Rows.Count; i++)
+                {
+                    <tr>
+                        <td>@producent.Rows[i][0]</td>
+                        <td>@producent.Rows[i][1]</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-6">
+            <h4 class="mt-3">Podkategorie</h4>
+            <table class="table table-bordered table-striped" style="margin-top: 1rem;">
+                <tr>
+                    <th>Id</th>
+                    <th>Podkategoria</th>
+                </tr>
+                @for (int i = 0; i < podkategoria.Rows.Count; i++)
+                {
+                    <tr>
+                        <td>@podkategoria.Rows[i][0]</td>
+                        <td>@podkategoria.Rows[i][1]</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <h4 class="text-center mt-4">Wypełnij pola</h4>
+        <hr class="mt-5 mb-5" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-md-8">
+                    @Html.LabelFor(model => model.ProductProducent, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.ProductProducent, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductProducent, "", new { @class = "text-danger" })
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-md-8">
+                    @Html.LabelFor(model => model.ProductPodkategoriaID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.ProductPodkategoriaID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductPodkategoriaID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-md-8">
+                    @Html.LabelFor(model => model.ProductNazwa, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.ProductNazwa, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductNazwa, "", new { @class = "text-danger" })
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-md-8">
+                    @Html.LabelFor(model => model.ProductOpis, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.ProductOpis, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductOpis, "", new { @class = "text-danger" })
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-md-8">
+                    @Html.LabelFor(model => model.ProductCenaNetto, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.ProductCenaNetto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductCenaNetto, "", new { @class = "text-danger" })
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-md-8">
+                    @Html.LabelFor(model => model.ProductPodatek, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.ProductPodatek, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductPodatek, "", new { @class = "text-danger" })
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-md-8">
+                    @Html.LabelFor(model => model.ProductIlosc_Sztuk_Magazyn, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.ProductIlosc_Sztuk_Magazyn, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductIlosc_Sztuk_Magazyn, "", new { @class = "text-danger" })
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-md-8">
+                    <input type="submit" value="Dodaj produkt" class="btn btn-outline-success" />
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<div class="pb-5 mt-5">
+    @Html.ActionLink("Wróć do listy", "Index")
+</div>

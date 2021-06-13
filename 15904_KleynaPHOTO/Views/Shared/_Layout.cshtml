@@ -27,13 +27,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Strona Główna</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Secured">Zaloguj</a>
-                        </li>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Secured">Zaloguj</a>
+                            </li>
+                        }
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AllProducts">Wszystkie produkty</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Wszystkie produkty</a>
                             </li>
 
                             <li class="nav-item">
@@ -46,7 +49,7 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="no-gutters">
+        <main role="main">
             @RenderBody()
         </main>
     </div>

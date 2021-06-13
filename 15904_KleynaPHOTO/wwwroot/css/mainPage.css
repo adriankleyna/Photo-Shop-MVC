@@ -1,6 +1,11 @@
 ﻿body {
 }
 
+.register_info {
+    text-align: center;
+}
+
 .headerPhoto {
-    
+    position: relative;
+    top: -1em;
 }
