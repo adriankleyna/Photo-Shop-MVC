@@ -1,0 +1,85 @@
+﻿@model _15904_KleynaPHOTO.Models.Pracownik
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2 class="mt-5 mb-4 text-center">Edycja pozycji</h2>
+
+<h4 class="text-center">Wypełnij formularz</h4>
+<hr />
+<div class="row">
+    <div class="col"></div>
+    <div class="col-md-8">
+        <form asp-action="Edit">
+
+            <div class="form-group">
+                <label asp-for="AdresUlica" class="control-label"></label>
+                <input asp-for="AdresUlica" class="form-control" />
+                <span asp-validation-for="AdresUlica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdresNumer" class="control-label"></label>
+                <input asp-for="AdresNumer" class="form-control" />
+                <span asp-validation-for="AdresNumer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdresKod" class="control-label"></label>
+                <input asp-for="AdresKod" class="form-control" />
+                <span asp-validation-for="AdresKod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdresMiasto" class="control-label"></label>
+                <input asp-for="AdresMiasto" class="form-control" />
+                <span asp-validation-for="AdresMiasto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PracownikImie" class="control-label"></label>
+                <input asp-for="PracownikImie" class="form-control" />
+                <span asp-validation-for="PracownikImie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PracownikNazwisko" class="control-label"></label>
+                <input asp-for="PracownikNazwisko" class="form-control" />
+                <span asp-validation-for="PracownikNazwisko" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PracownikStanowisko" class="control-label"></label>
+                <input asp-for="PracownikStanowisko" class="form-control" />
+                <span asp-validation-for="PracownikStanowisko" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PracownikPesel" class="control-label"></label>
+                <input asp-for="PracownikPesel" class="form-control" />
+                <span asp-validation-for="PracownikPesel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PracownikData" class="control-label"></label>
+                <input asp-for="PracownikData" class="form-control" />
+                <span asp-validation-for="PracownikData" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PracownikPensja" class="control-label"></label>
+                <input asp-for="PracownikPensja" class="form-control" />
+                <span asp-validation-for="PracownikPensja" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PracownikDodatek" class="control-label"></label>
+                <input asp-for="PracownikDodatek" class="form-control" />
+                <span asp-validation-for="PracownikDodatek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Zapisz Edycję" class="btn btn-outline-success" />
+            </div>
+        </form>
+    </div>
+    <div class="col"></div>
+</div>
+
+<div class="mt-5 pb-5">
+    <a asp-action="Index">Wróć do listy</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

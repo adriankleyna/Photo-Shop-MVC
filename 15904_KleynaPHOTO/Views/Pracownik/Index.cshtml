@@ -1,0 +1,46 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-info mt-5 pb-4">Wszyscy pracownicy</h2>
+<div class="table-responsive">
+    <table class="table align-middle table-bordered table-striped">
+        <tr class="align-middle">
+            <th class="align-middle">Adres</th>
+            <th class="align-middle">Miasto</th>
+            <th class="align-middle">Imie</th>
+            <th class="align-middle">Nazwisko</th>
+            <th class="align-middle">Stanowisko</th>
+            <th class="align-middle">Pensja</th>
+            <th class="align-middle">Data Zatrudnienia</th>
+            <th class="align-middle">Pensja</th>
+            <th class="align-middle">Dodatek do pensji</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+            <tr>
+                <td class="align-middle">@Model.Rows[i][1]</td>
+                <td class="align-middle">@Model.Rows[i][2]</td>
+                <td class="align-middle">@Model.Rows[i][3]</td>
+                <td class="align-middle">@Model.Rows[i][4]</td>
+                <td class="align-middle">@Model.Rows[i][5]</td>
+                <td class="align-middle">@Model.Rows[i][6]</td>
+                <td class="align-middle">@Model.Rows[i][7]</td>
+                <td class="align-middle">@Model.Rows[i][8]</td>
+                <td class="align-middle">@Model.Rows[i][9]</td>
+                <td class="align-middle">
+                    <a href="@Url.Action("Edit", "Pracownik", new {@id = @Model.Rows[i][0] })">Edycja</a>
+                </td>
+                <td class="align-middle">
+                    <a href="@Url.Action("Delete", "Pracownik", new {@id = @Model.Rows[i][0] })">Usuń</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="mt-4 pb-5">
+    <a href="@Url.Action("Create", "Pracownik")">Dodaj Pracownika</a>
+</div>
