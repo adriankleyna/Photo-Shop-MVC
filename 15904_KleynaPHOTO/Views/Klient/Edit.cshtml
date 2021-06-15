@@ -1,4 +1,4 @@
-﻿@model _15904_KleynaPHOTO.Models.Pracownik
+﻿@model _15904_KleynaPHOTO.Models.Klient
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,10 +12,9 @@
     <div class="col"></div>
     <div class="col-md-8">
         <form asp-action="Edit">
-
-            <h4 class="text-info font-weight-bold mt-2">Dane Adresowe</h4>
-            <hr />
             <div class="form-group">
+                <h4 class="text-info font-weight-bold mt-2">Dane Adresowe</h4>
+                <hr />
                 <label asp-for="AdresUlica" class="control-label"></label>
                 <input asp-for="AdresUlica" class="form-control" />
                 <span asp-validation-for="AdresUlica" class="text-danger"></span>
@@ -35,42 +34,37 @@
                 <input asp-for="AdresMiasto" class="form-control" />
                 <span asp-validation-for="AdresMiasto" class="text-danger"></span>
             </div>
-            <h4 class="text-info font-weight-bold mt-5">Dane Pracownika</h4>
+            <h4 class="text-info font-weight-bold mt-5">Dane Klienta</h4>
             <hr />
             <div class="form-group">
-                <label asp-for="PracownikImie" class="control-label"></label>
-                <input asp-for="PracownikImie" class="form-control" />
-                <span asp-validation-for="PracownikImie" class="text-danger"></span>
+                <label asp-for="KlientImie" class="control-label"></label>
+                <input asp-for="KlientImie" class="form-control" />
+                <span asp-validation-for="KlientImie" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PracownikNazwisko" class="control-label"></label>
-                <input asp-for="PracownikNazwisko" class="form-control" />
-                <span asp-validation-for="PracownikNazwisko" class="text-danger"></span>
+                <label asp-for="KlientNazwisko" class="control-label"></label>
+                <input asp-for="KlientNazwisko" class="form-control" />
+                <span asp-validation-for="KlientNazwisko" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PracownikStanowisko" class="control-label"></label>
-                <input asp-for="PracownikStanowisko" class="form-control" />
-                <span asp-validation-for="PracownikStanowisko" class="text-danger"></span>
+                <label asp-for="KlientPesel" class="control-label"></label>
+                <input asp-for="KlientPesel" class="form-control" />
+                <span asp-validation-for="KlientPesel" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PracownikPesel" class="control-label"></label>
-                <input asp-for="PracownikPesel" class="form-control" />
-                <span asp-validation-for="PracownikPesel" class="text-danger"></span>
+                <label asp-for="KlientTelefon" class="control-label"></label>
+                <input asp-for="KlientTelefon" class="form-control" />
+                <span asp-validation-for="KlientTelefon" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PracownikData" class="control-label"></label>
-                <input asp-for="PracownikData" class="form-control" />
-                <span asp-validation-for="PracownikData" class="text-danger"></span>
+                <label asp-for="KlientEmail" class="control-label"></label>
+                <input asp-for="KlientEmail" class="form-control" />
+                <span asp-validation-for="KlientEmail" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PracownikPensja" class="control-label"></label>
-                <input asp-for="PracownikPensja" class="form-control" />
-                <span asp-validation-for="PracownikPensja" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PracownikDodatek" class="control-label"></label>
-                <input asp-for="PracownikDodatek" class="form-control" />
-                <span asp-validation-for="PracownikDodatek" class="text-danger"></span>
+                <label asp-for="KlientUsuniety" class="control-label"></label>
+                <input asp-for="KlientUsuniety" class="form-control" />
+                <span asp-validation-for="KlientUsuniety" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Zapisz Edycję" class="btn btn-outline-success" />
