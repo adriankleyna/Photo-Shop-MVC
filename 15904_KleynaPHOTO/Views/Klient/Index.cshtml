@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="text-info mt-5 pb-4">Wszyscy pracownicy</h2>
+<h2 class="text-info mt-5 pb-4">Wszyscy Klienci</h2>
 <div class="table-responsive">
     <table class="table align-middle table-bordered table-striped">
         <tr class="align-middle">
@@ -11,11 +11,9 @@
             <th class="align-middle">Miasto</th>
             <th class="align-middle">Imie</th>
             <th class="align-middle">Nazwisko</th>
-            <th class="align-middle">Stanowisko</th>
             <th class="align-middle">Pesel</th>
-            <th class="align-middle">Data Zatrudnienia</th>
-            <th class="align-middle">Pensja</th>
-            <th class="align-middle">Dodatek do pensji</th>
+            <th class="align-middle">Telefon</th>
+            <th class="align-middle">E-mail</th>
             <th></th>
             <th></th>
         </tr>
@@ -29,18 +27,16 @@
                 <td class="align-middle">@Model.Rows[i][5]</td>
                 <td class="align-middle">@Model.Rows[i][6]</td>
                 <td class="align-middle">@Model.Rows[i][7]</td>
-                <td class="align-middle">@Model.Rows[i][8]</td>
-                <td class="align-middle">@Model.Rows[i][9]</td>
                 <td class="align-middle">
-                    <a href="@Url.Action("Edit", "Pracownik", new {@id = @Model.Rows[i][0] })">Edycja</a>
+                    <a href="@Url.Action("Edit", "Klient", new {@id = @Model.Rows[i][0] })">Edycja</a>
                 </td>
                 <td class="align-middle">
-                    <a href="@Url.Action("Delete", "Pracownik", new {@id = @Model.Rows[i][0] })">Usuń</a>
+                    <a href="@Url.Action("Delete", "Klient", new {@id = @Model.Rows[i][0] })">Usuń</a>
                 </td>
             </tr>
         }
     </table>
 </div>
 <div class="mt-4 pb-5">
-    <a href="@Url.Action("Create", "Pracownik")">Dodaj Pracownika</a>
+    <a href="@Url.Action("Create", "Klient")">Dodaj Klienta</a>
 </div>

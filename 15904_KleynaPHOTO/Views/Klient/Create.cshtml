@@ -1,0 +1,84 @@
+﻿@model _15904_KleynaPHOTO.Models.Klient
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2 class="mt-5 mb-4 text-center">Dodawanie Klienta</h2>
+
+<h4 class="text-center">Wypełnij formularz</h4>
+<hr />
+<div class="row">
+    <div class="col"></div>
+    <div class="col-md-8">
+        <form asp-action="Create">
+
+            <h4 class="text-info font-weight-bold mt-2">Dane Adresowe</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="AdresUlica" class="control-label"></label>
+                <input asp-for="AdresUlica" class="form-control" />
+                <span asp-validation-for="AdresUlica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdresNumer" class="control-label"></label>
+                <input asp-for="AdresNumer" class="form-control" />
+                <span asp-validation-for="AdresNumer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdresKod" class="control-label"></label>
+                <input asp-for="AdresKod" class="form-control" />
+                <span asp-validation-for="AdresKod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdresMiasto" class="control-label"></label>
+                <input asp-for="AdresMiasto" class="form-control" />
+                <span asp-validation-for="AdresMiasto" class="text-danger"></span>
+            </div>
+            <h4 class="text-info font-weight-bold mt-5">Dane Klienta</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="KlientImie" class="control-label"></label>
+                <input asp-for="KlientImie" class="form-control" />
+                <span asp-validation-for="KlientImie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KlientNazwisko" class="control-label"></label>
+                <input asp-for="KlientNazwisko" class="form-control" />
+                <span asp-validation-for="KlientNazwisko" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KlientPesel" class="control-label"></label>
+                <input asp-for="KlientPesel" class="form-control" type="number"/>
+                <span asp-validation-for="KlientPesel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KlientTelefon" class="control-label"></label>
+                <input asp-for="KlientTelefon" class="form-control" />
+                <span asp-validation-for="KlientTelefon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KlientEmail" class="control-label"></label>
+                <input asp-for="KlientEmail" class="form-control" />
+                <span asp-validation-for="KlientEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KlientUsuniety" class="control-label"></label>
+                <input asp-for="KlientUsuniety" class="form-control" value="0"/>
+                <span asp-validation-for="KlientUsuniety" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj Klienta" class="btn btn-outline-success" />
+            </div>
+        </form>
+    </div>
+    <div class="col"></div>
+</div>
+
+<div class="mt-5 pb-5">
+    <a asp-action="Index">Wróć do listy</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
