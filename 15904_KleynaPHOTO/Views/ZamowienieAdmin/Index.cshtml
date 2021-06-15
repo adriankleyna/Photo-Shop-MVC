@@ -1,0 +1,42 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Index";
+
+
+}
+
+<h2 class="text-info mt-5 pb-4">Wszystkie Zamówienia</h2>
+<div class="table-responsive">
+    <table class="table align-middle table-bordered table-striped">
+        <tr class="align-middle">
+            <th class="align-middle">Imie Pracownika</th>
+            <th class="align-middle">Nazwisko Pracownika</th>
+            <th class="align-middle">Imie Klienta</th>
+            <th class="align-middle">Nazwisko Klienta</th>
+            <th class="align-middle">Data Zamówienia</th>
+            <th class="align-middle">Cena dostawy netto</th>
+            <th class="align-middle">Dostawa Podatek</th>
+            <th class="align-middle">Cena dostawy brutto</th>
+            <th class="align-middle">Wartość zamówienia netto</th>
+            <th class="align-middle">Podatek zamówienie</th>
+            <th class="align-middle">Wartość zamówienia brutto</th>
+        </tr>
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+            <tr>
+                <td class="align-middle">@Model.Rows[i][1]</td>
+                <td class="align-middle">@Model.Rows[i][2]</td>
+                <td class="align-middle">@Model.Rows[i][3]</td>
+                <td class="align-middle">@Model.Rows[i][4]</td>
+                <td class="align-middle">@Model.Rows[i][5]</td>
+                <td class="align-middle">@Model.Rows[i][6]</td>
+                <td class="align-middle">@Model.Rows[i][7]</td>
+                <td class="align-middle">@Convert.ToDouble(Model.Rows[i][8])</td>
+                <td class="align-middle">@Model.Rows[i][9]</td>
+                <td class="align-middle">@Model.Rows[i][10]</td>
+                <td class="align-middle">@Convert.ToDouble(Model.Rows[i][11])</td>
+            </tr>
+        }
+    </table>
+</div>
+
