@@ -22,7 +22,10 @@ namespace _15904_KleynaPHOTO.Controllers
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select produkt.id, kategoria.nazwa as kategoria, podkategoria.nazwa as podkategoria, produkt.nazwa, produkt.cena_netto, produkt.podatek  from ((produkt inner join podkategoria on produkt.podkategoria_id = podkategoria.id)inner join kategoria on podkategoria.kategoria_id = kategoria.id); ", sqlCon);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select produkt.id, kategoria.nazwa as kategoria, " + 
+                    "podkategoria.nazwa as podkategoria, produkt.nazwa, produkt.cena_netto, produkt.podatek  " +
+                    "from ((produkt inner join podkategoria on produkt.podkategoria_id = podkategoria.id) " + 
+                    "inner join kategoria on podkategoria.kategoria_id = kategoria.id); ", sqlCon);
                 sqlDataAdapter.Fill(dataTable_Product);
             }
 
