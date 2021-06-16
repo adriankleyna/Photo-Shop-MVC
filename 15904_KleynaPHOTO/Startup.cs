@@ -30,32 +30,6 @@ namespace _15904_KleynaPHOTO
                 .AddCookie(options =>
                 {
                     options.LoginPath = "/login";
-                    options.AccessDeniedPath = "/denied";
-
-                    options.Events = new CookieAuthenticationEvents()
-                    {
-                        OnSigningIn = async context =>
-                        {
-                            var principal = context.Principal;
-                            if (principal.HasClaim(user => user.Type == ClaimTypes.NameIdentifier))
-                            {
-                                if(principal.Claims.FirstOrDefault(user => user.Type == ClaimTypes.NameIdentifier).Value == "adi")
-                                {
-                                    var claimsIdentity = principal.Identity as ClaimsIdentity;
-                                    claimsIdentity.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
-                                }
-                            }
-                            await Task.CompletedTask;
-                        },
-                        OnSignedIn = async context =>
-                        {
-                            await Task.CompletedTask;
-                        },
-                        OnValidatePrincipal = async context =>
-                        {
-                            await Task.CompletedTask;
-                        }
-                    };
                 });
         }
 

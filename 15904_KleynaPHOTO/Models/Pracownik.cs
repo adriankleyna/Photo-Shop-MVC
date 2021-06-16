@@ -44,21 +44,28 @@ namespace _15904_KleynaPHOTO.Models
         [DisplayName("Stanowisko")]
         public string PracownikStanowisko { get; set; }
 
-
+        [Required(AllowEmptyStrings = false)]
         [DisplayName("Pesel")]
         public string PracownikPesel{ get; set; }
 
+        [Required(AllowEmptyStrings = false)]
         [DisplayName("Data zatrudnienia")]
         public string PracownikData { get; set; }
 
+
+        [Required(AllowEmptyStrings = false)]
         [DisplayName("Pensja")]
         public double PracownikPensja { get; set; }
 
         [DisplayName("Dodatek")]
         public double PracownikDodatek { get; set; }
 
-        
 
+        [DisplayName("Podaj login")]
+        public string PracownikLogin { get; set; }
+
+        [DisplayName("Podaj hasło")]
+        public string PracownikHaslo { get; set; }
 
     }
 }

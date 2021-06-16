@@ -57,7 +57,11 @@ namespace _15904_KleynaPHOTO.Models
         [DisplayName("Usuniety")]
         public string KlientUsuniety { get; set; }
 
+        [DisplayName("Podaj login")]
+        public string KlientLogin { get; set; }
 
+        [DisplayName("Podaj hasło")]
+        public string KlientHaslo { get; set; }
 
     }
 }
