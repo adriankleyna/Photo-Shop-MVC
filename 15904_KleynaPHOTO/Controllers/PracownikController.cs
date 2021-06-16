@@ -51,22 +51,36 @@ namespace _15904_KleynaPHOTO.Controllers
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-                string queryAdres = "insert into adres values(@AdresUlica, @AdresNumer, @AdresKod, @AdresMiasto)";
-                SqlCommand sqlCommandAdres = new SqlCommand(queryAdres, sqlConnection);
+                string query = "insert into adres values(@AdresUlica, @AdresNumer, @AdresKod, @AdresMiasto)";
+                SqlCommand sqlCommandAdres = new SqlCommand(query, sqlConnection);
                 sqlCommandAdres.Parameters.AddWithValue("@AdresUlica", pracownik.AdresUlica);
                 sqlCommandAdres.Parameters.AddWithValue("@AdresNumer", pracownik.AdresNumer);
                 sqlCommandAdres.Parameters.AddWithValue("@AdresKod", pracownik.AdresKod);
                 sqlCommandAdres.Parameters.AddWithValue("@AdresMiasto", pracownik.AdresMiasto);
                 sqlCommandAdres.ExecuteNonQuery();
 
-                queryAdres = "select id from adres where ulica=@AdresUlica and numer=@AdresNumer";
-                sqlCommandAdres = new SqlCommand(queryAdres, sqlConnection);
+                query = "select id from adres where ulica=@AdresUlica and numer=@AdresNumer";
+                sqlCommandAdres = new SqlCommand(query, sqlConnection);
                 sqlCommandAdres.Parameters.AddWithValue("@AdresUlica", pracownik.AdresUlica);
                 sqlCommandAdres.Parameters.AddWithValue("@AdresNumer", pracownik.AdresNumer);
                 int id_adres = Convert.ToInt32(sqlCommandAdres.ExecuteScalar());
 
 
-                string queryPracownik = "insert into pracownik values(@id_adres, @PracownikImie, @PracownikNazwisko, @PracownikStanowisko, @PracownikPesel, @PracownikData, @PracownikPensja, @PracownikDodatek)";
+                query = "INSERT INTO KONTO VALUES(@PracownikLogin, @PracownikHaslo, 'Admin');";
+                SqlCommand sqlCommandKonto = new SqlCommand(query, sqlConnection);
+                sqlCommandKonto.Parameters.AddWithValue("@PracownikLogin", pracownik.PracownikLogin);
+                sqlCommandKonto.Parameters.AddWithValue("@PracownikHaslo", pracownik.PracownikHaslo);
+                sqlCommandKonto.ExecuteNonQuery();
+
+                query = "SELECT id from KONTO" +
+                       " WHERE userLogin=@PracownikLogin and userPassword=@PracownikHaslo";
+                sqlCommandKonto = new SqlCommand(query, sqlConnection);
+                sqlCommandKonto.Parameters.AddWithValue("@PracownikLogin", pracownik.PracownikLogin);
+                sqlCommandKonto.Parameters.AddWithValue("@PracownikHaslo", pracownik.PracownikHaslo);
+                int id_konto = Convert.ToInt32(sqlCommandKonto.ExecuteScalar());
+
+
+                string queryPracownik = "insert into pracownik values(@id_adres, @PracownikImie, @PracownikNazwisko, @PracownikStanowisko, @PracownikPesel, @PracownikData, @PracownikPensja, @PracownikDodatek, @id_konto)";
                 SqlCommand sqlCommand = new SqlCommand(queryPracownik, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@id_adres", id_adres);
                 sqlCommand.Parameters.AddWithValue("@PracownikImie", pracownik.PracownikImie);
@@ -76,6 +90,7 @@ namespace _15904_KleynaPHOTO.Controllers
                 sqlCommand.Parameters.AddWithValue("@PracownikData", pracownik.PracownikData);
                 sqlCommand.Parameters.AddWithValue("@PracownikPensja", pracownik.PracownikPensja);
                 sqlCommand.Parameters.AddWithValue("@PracownikDodatek", pracownik.PracownikDodatek);
+                sqlCommand.Parameters.AddWithValue("@id_konto", id_konto);
                 sqlCommand.ExecuteNonQuery();
 
             }
@@ -93,8 +108,10 @@ namespace _15904_KleynaPHOTO.Controllers
             {
                 sqlConnection.Open();
                 string query = "select adres.ulica, adres.numer, adres.miejscowosc, pracownik.imie, pracownik.nazwisko," +
-                    " pracownik.stanowisko, pracownik.pesel, pracownik.data_zatrudnienia, pracownik.pensja, pracownik.dodatek, adres.kod" +
-                    " from(pracownik inner join adres on adres.id = pracownik.adres_id) where pracownik.id = @PracownikID; ";
+                    " pracownik.stanowisko, pracownik.pesel, pracownik.data_zatrudnienia, pracownik.pensja, pracownik.dodatek, adres.kod," +
+                    " konto.userLogin, konto.userPassword" +
+                    " from pracownik inner join adres on adres.id = pracownik.adres_id " +
+                    " INNER JOIN KONTO on pracownik.konto_id = konto.id where pracownik.id = @PracownikID; ";
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
                 sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@PracownikID", id);
@@ -116,6 +133,8 @@ namespace _15904_KleynaPHOTO.Controllers
                 pracownik.PracownikPensja = Convert.ToDouble(dataTable.Rows[0][8]);
                 pracownik.PracownikDodatek = Convert.ToDouble(dataTable.Rows[0][9]);
                 pracownik.AdresKod = dataTable.Rows[0][10].ToString();
+                pracownik.PracownikLogin = dataTable.Rows[0][11].ToString();
+                pracownik.PracownikHaslo = dataTable.Rows[0][12].ToString();
 
                 return View(pracownik);
             }
@@ -161,11 +180,25 @@ namespace _15904_KleynaPHOTO.Controllers
                         " where id=@id_adres";
                     sqlCommand = new SqlCommand(queryEdit, sqlConnection);
                     sqlCommand.Parameters.AddWithValue("@id_adres", id_adres);
-                    sqlCommand.Parameters.AddWithValue("AdresUlica", pracownik.AdresUlica);
-                    sqlCommand.Parameters.AddWithValue("AdresNumer", pracownik.AdresNumer);
-                    sqlCommand.Parameters.AddWithValue("AdresKod", pracownik.AdresKod);
-                    sqlCommand.Parameters.AddWithValue("AdresMiasto", pracownik.AdresMiasto);
+                    sqlCommand.Parameters.AddWithValue("@AdresUlica", pracownik.AdresUlica);
+                    sqlCommand.Parameters.AddWithValue("@AdresNumer", pracownik.AdresNumer);
+                    sqlCommand.Parameters.AddWithValue("@AdresKod", pracownik.AdresKod);
+                    sqlCommand.Parameters.AddWithValue("@AdresMiasto", pracownik.AdresMiasto);
                     sqlCommand.ExecuteNonQuery();
+
+                    queryEdit = "select konto_id from pracownik where id=@PracownikID";
+                    sqlCommand = new SqlCommand(queryEdit, sqlConnection);
+                    sqlCommand.Parameters.AddWithValue("@PracownikID", id);
+                    int id_konto = Convert.ToInt32(sqlCommand.ExecuteScalar());
+
+                    queryEdit = "update KONTO set userLogin=@PracownikLogin, userPassword=@PracownikHaslo" +
+                        " where id=@id_konto";
+                    sqlCommand = new SqlCommand(queryEdit, sqlConnection);
+                    sqlCommand.Parameters.AddWithValue("@id_konto", id_konto);
+                    sqlCommand.Parameters.AddWithValue("@PracownikLogin", pracownik.PracownikLogin);
+                    sqlCommand.Parameters.AddWithValue("@PracownikHaslo", pracownik.PracownikHaslo);
+                    sqlCommand.ExecuteNonQuery();
+
                 }
                 return RedirectToAction("Index");
             }
@@ -187,9 +220,19 @@ namespace _15904_KleynaPHOTO.Controllers
                 sqlCommand.Parameters.AddWithValue("@PracownikID", id);
                 int id_adres = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
+                queryDelete = "select konto_id from pracownik where id=@PracownikID";
+                sqlCommand = new SqlCommand(queryDelete, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@PracownikID", id);
+                int id_konto = Convert.ToInt32(sqlCommand.ExecuteScalar());
+
                 queryDelete = "delete from adres where id=@id_adres";
                 sqlCommand = new SqlCommand(queryDelete, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@id_adres", id_adres);
+                sqlCommand.ExecuteNonQuery();
+
+                queryDelete = "delete from KONTO where id=@id_konto";
+                sqlCommand = new SqlCommand(queryDelete, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@id_konto", id_konto);
                 sqlCommand.ExecuteNonQuery();
 
                 queryDelete = "delete from pracownik where id=@PracownikID";
@@ -200,19 +243,5 @@ namespace _15904_KleynaPHOTO.Controllers
             return RedirectToAction("Index");
         }
 
-        //// POST: PracownikController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

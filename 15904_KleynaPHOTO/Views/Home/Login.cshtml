@@ -4,6 +4,7 @@
 @{
     var returnUrl = ViewData["ReturnUrl"] as string;
     var error = TempData["Error"] as string;
+    var msg = TempData["Msg"] as string;
 }
 
 <h2 class="text-center mt-5 mb-5">Panel logowania</h2>
@@ -15,7 +16,7 @@
             <div class="col"></div>
             <div class="col mb-2">
                 <label for="loginInput" class="form-label">Nazwa użytkownika</label>
-                <input type="text" class="form-control" id="loginInput" name="username" placeholder="Podaj login">
+                <input type="text" class="form-control" id="loginInput" name="login" placeholder="Podaj login">
             </div>
             <div class="col"></div>
         </div>
@@ -30,7 +31,7 @@
         <div class="row">
             <div class="col"></div>
             <div class="col text-center">
-                <button type="submit" class="btn btn-outline-success">Zaloguj</button>
+                <button type="submit" class="btn btn-outline-success" value="login">Zaloguj</button>
             </div>
             <div class="col"></div>
         </div>
@@ -43,4 +44,12 @@
     }
 </div>
 
+@if (!string.IsNullOrEmpty(error))
+{
+    <h2 class="alert-danger" style="padding:25px;">@error</h2>
+}
+@if (!string.IsNullOrEmpty(msg))
+{
+    <h2 class="alert-success" style="padding:25px;">@msg</h2>
+}
 

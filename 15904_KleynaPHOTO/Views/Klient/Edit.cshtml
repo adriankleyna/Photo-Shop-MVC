@@ -66,6 +66,18 @@
                 <input asp-for="KlientUsuniety" class="form-control" />
                 <span asp-validation-for="KlientUsuniety" class="text-danger"></span>
             </div>
+            <h4 class="text-info font-weight-bold mt-5">Dane Logowanie</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="KlientLogin" class="control-label"></label>
+                <input asp-for="KlientLogin" class="form-control" />
+                <span asp-validation-for="KlientLogin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KlientHaslo" class="control-label"></label>
+                <input asp-for="KlientHaslo" class="form-control"/>
+                <span asp-validation-for="KlientHaslo" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Zapisz Edycję" class="btn btn-outline-success" />
             </div>
