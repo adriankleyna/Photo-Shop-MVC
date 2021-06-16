@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using _15904_KleynaPHOTO.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace _15904_KleynaPHOTO.Controllers
 {
@@ -14,6 +15,7 @@ namespace _15904_KleynaPHOTO.Controllers
     {
         string connectionString = @"Data Source=.;Initial Catalog=SKLEP_FOTO;Integrated Security=True";
 
+        [Authorize(Roles = "Admin")]
         // GET: KlientController
         public ActionResult Index()
         {
@@ -35,12 +37,14 @@ namespace _15904_KleynaPHOTO.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: KlientController/Create
         public ActionResult Create()
         {
             return View(new Klient());
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: KlientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -76,8 +80,8 @@ namespace _15904_KleynaPHOTO.Controllers
                 sqlCommandKonto.Parameters.AddWithValue("@KlientHaslo", klient.KlientHaslo);
                 int id_konto = Convert.ToInt32(sqlCommandKonto.ExecuteScalar());
 
-                string queryPracownik = "insert into klient values(@id_adres, @KlientImie, @KlientNazwisko, @KlientPesel, @KlientTelefon, @KlientEmail, @KlientUsuniety, @id_konto)";
-                SqlCommand sqlCommand = new SqlCommand(queryPracownik, sqlConnection);
+                string queryKlient = "insert into klient values(@id_adres, @KlientImie, @KlientNazwisko, @KlientPesel, @KlientTelefon, @KlientEmail, @KlientUsuniety, @id_konto)";
+                SqlCommand sqlCommand = new SqlCommand(queryKlient, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@id_adres", id_adres);
                 sqlCommand.Parameters.AddWithValue("@KlientImie", klient.KlientImie);
                 sqlCommand.Parameters.AddWithValue("@KlientNazwisko", klient.KlientNazwisko);
@@ -93,6 +97,7 @@ namespace _15904_KleynaPHOTO.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: KlientController/Edit/5
         public ActionResult Edit(int id)
         {
@@ -138,6 +143,7 @@ namespace _15904_KleynaPHOTO.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: KlientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]

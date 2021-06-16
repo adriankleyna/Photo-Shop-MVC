@@ -57,13 +57,15 @@ namespace _15904_KleynaPHOTO.Models
         [DisplayName("Pensja")]
         public double PracownikPensja { get; set; }
 
+        [Required(AllowEmptyStrings = false)]
         [DisplayName("Dodatek")]
         public double PracownikDodatek { get; set; }
 
-
+        [Required(AllowEmptyStrings = false)]
         [DisplayName("Podaj login")]
         public string PracownikLogin { get; set; }
 
+        [Required(AllowEmptyStrings = false)]
         [DisplayName("Podaj hasło")]
         public string PracownikHaslo { get; set; }
 

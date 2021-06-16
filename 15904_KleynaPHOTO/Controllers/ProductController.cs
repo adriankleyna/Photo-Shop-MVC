@@ -1,4 +1,5 @@
 ﻿using _15904_KleynaPHOTO.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +15,7 @@ namespace _15904_KleynaPHOTO.Controllers
     {
         string connectionString = @"Data Source=.;Initial Catalog=SKLEP_FOTO;Integrated Security=True";
 
+        [Authorize(Roles = "Admin")]
         // GET: ProductController
         [HttpGet]
         public ActionResult Index()
@@ -32,12 +34,14 @@ namespace _15904_KleynaPHOTO.Controllers
             return View(dataTable_Product);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: ProductController/Create
         public ActionResult Create()
         {
@@ -65,6 +69,7 @@ namespace _15904_KleynaPHOTO.Controllers
             return View(new Product());
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -90,6 +95,7 @@ namespace _15904_KleynaPHOTO.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
@@ -196,6 +202,7 @@ namespace _15904_KleynaPHOTO.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -221,6 +228,7 @@ namespace _15904_KleynaPHOTO.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
@@ -237,19 +245,5 @@ namespace _15904_KleynaPHOTO.Controllers
             return RedirectToAction("Index");
         }
 
-        //// POST: ProductController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

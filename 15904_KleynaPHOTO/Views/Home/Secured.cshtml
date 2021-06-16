@@ -4,16 +4,11 @@
 @{
 }
 
-<div class="container">
-    <h1 class="text-center">This is Top Secret</h1>
-    <h4 class="text-center">Welcome @User.Identity.Name</h4>
-    <div class="container-fluid">
-        <ul>
-            @foreach (var user in User.Claims)
-            {
-                <li>@user.Type: @user.Value</li>
-            }
-        </ul>
+<div class="container mt-5 mb-5">
+    <div class="pt-5 img-fluid text-center">
+        <img src="~/images/succesLogin.jpg" height="150px"/>
     </div>
+    <h3 class="text-success text-center">Zostałeś pomyślnie zalogowany</h3>
+    <h4 class="text-center mt-4">Witaj @User.Identity.Name</h4>
 </div>
 

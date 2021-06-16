@@ -63,5 +63,7 @@ namespace _15904_KleynaPHOTO.Models
         [DisplayName("Podaj hasło")]
         public string KlientHaslo { get; set; }
 
+        public string KlientRola { get; set; }
+
     }
 }

@@ -11,8 +11,6 @@
         <th>Nazwa</th>
         <th>Cena netto</th>
         <th>Podatek</th>
-        <th></th>
-        <th></th>
     </tr>
     @for (int i = 0; i < Model.Rows.Count; i++)
     {
@@ -22,15 +20,10 @@
             <td>@Model.Rows[i][3]</td>
             <td>@Model.Rows[i][4]</td>
             <td>@Model.Rows[i][5]</td>
-            <td>
-                <a href="@Url.Action("Edit", "Product", new {@id = @Model.Rows[i][0] })">Edycja</a>
-            </td>
-            <td>
-                <a href="@Url.Action("Delete", "Product", new {@id = @Model.Rows[i][0] })">Usuń</a>
-            </td>
         </tr>
     }
 </table>
 
-<a href="@Url.Action("Create", "Product")">Dodaj Produkt</a>
+
+
 
