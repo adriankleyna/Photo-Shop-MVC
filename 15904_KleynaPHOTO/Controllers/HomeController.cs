@@ -77,6 +77,7 @@ namespace _15904_KleynaPHOTO.Controllers
             if (string.IsNullOrEmpty(password))
             {
                 TempData["Error"] = "Nie podałeś hasła";
+                return View("login");
             }
 
             DataTable dataTableKonto = new DataTable();
@@ -96,14 +97,14 @@ namespace _15904_KleynaPHOTO.Controllers
                 {
                     query = "select * from pracownik where konto_id=@ID;";
                     sqlData = new SqlDataAdapter(query, sqlConnection);
-                    sqlData.SelectCommand.Parameters.AddWithValue("@ID", dataTableKonto.Rows[0][0]);
+                    sqlData.SelectCommand.Parameters.AddWithValue("@ID", @dataTableKonto.Rows[0][0]);
                     sqlData.Fill(dataTablePracownik);
 
                     if (dataTablePracownik.Rows.Count == 0)
                     {
                         query = "select * from klient where konto_id=@ID;";
                         sqlData = new SqlDataAdapter(query, sqlConnection);
-                        sqlData.SelectCommand.Parameters.AddWithValue("@ID", dataTableKonto.Rows[0][0]);
+                        sqlData.SelectCommand.Parameters.AddWithValue("@ID", @dataTableKonto.Rows[0][0]);
                         sqlData.Fill(dataTableKlient);
                     }
                 }
@@ -117,17 +118,17 @@ namespace _15904_KleynaPHOTO.Controllers
 
                 if (dataTablePracownik.Rows.Count == 0)
                 {
-                    claims.Add(new Claim("id", dataTableKlient.Rows[0][0].ToString()));
-                    claims.Add(new Claim(ClaimTypes.NameIdentifier, dataTableKlient.Rows[0][3].ToString()));
-                    claims.Add(new Claim(ClaimTypes.Name, dataTableKlient.Rows[0][3].ToString()));
-                    claims.Add(new Claim(ClaimTypes.Role, dataTableKonto.Rows[0][3].ToString()));
+                    claims.Add(new Claim("id", @dataTableKlient.Rows[0][0].ToString()));
+                    claims.Add(new Claim(ClaimTypes.NameIdentifier, @dataTableKlient.Rows[0][3].ToString()));
+                    claims.Add(new Claim(ClaimTypes.Name, @dataTableKlient.Rows[0][2].ToString()));
+                    claims.Add(new Claim(ClaimTypes.Role, @dataTableKonto.Rows[0][3].ToString()));
 
                 }
                 else
                 {
-                    claims.Add(new Claim("id", dataTablePracownik.Rows[0][0].ToString()));
-                    claims.Add(new Claim(ClaimTypes.NameIdentifier, dataTablePracownik.Rows[0][3].ToString()));
-                    claims.Add(new Claim(ClaimTypes.Name, dataTablePracownik.Rows[0][3].ToString()));
+                    claims.Add(new Claim("id", @dataTablePracownik.Rows[0][0].ToString()));
+                    claims.Add(new Claim(ClaimTypes.NameIdentifier, @dataTablePracownik.Rows[0][3].ToString()));
+                    claims.Add(new Claim(ClaimTypes.Name, @dataTablePracownik.Rows[0][2].ToString()));
                     claims.Add(new Claim(ClaimTypes.Role, @dataTableKonto.Rows[0][3].ToString()));
                 }
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using _15904_KleynaPHOTO.Models;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace _15904_KleynaPHOTO.Controllers
 {
@@ -37,12 +37,14 @@ namespace _15904_KleynaPHOTO.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: PracownikController/Create
         public ActionResult Create()
         {
             return View(new Pracownik());
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: PracownikController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -98,6 +100,7 @@ namespace _15904_KleynaPHOTO.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: PracownikController/Edit/5
         public ActionResult Edit(int id)
         {
@@ -145,6 +148,7 @@ namespace _15904_KleynaPHOTO.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: PracownikController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -208,6 +212,7 @@ namespace _15904_KleynaPHOTO.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: PracownikController/Delete/5
         public ActionResult Delete(int id)
         {

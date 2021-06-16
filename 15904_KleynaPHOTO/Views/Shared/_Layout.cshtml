@@ -29,6 +29,9 @@
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Create">Rejestracja</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Secured">Zaloguj</a>
                             </li>
                         }
@@ -51,6 +54,16 @@
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Wszystkie produkty</a>
                                 </li>
 
+                            }
+
+                            if (User.IsInRole("Klient"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="ProduktForKlient" asp-action="Index">Produkty</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="ZamowienieKlient" asp-action="Index">Twoje Zamówienia</a>
+                                </li>
                             }
 
                             <li class="nav-item dropdown">
