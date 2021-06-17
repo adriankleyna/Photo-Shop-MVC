@@ -13,7 +13,8 @@ namespace _15904_KleynaPHOTO.Controllers
     public class ZamowienieKlientController : Controller
     {
 
-        string connectionString = @"Data Source=.;Initial Catalog=SKLEP_FOTO;Integrated Security=True";
+        //string connectionString = @"Data Source=.;Initial Catalog=SKLEP_FOTO;Integrated Security=True";
+        string connectionString = "Server=DESKTOP-OBAGE0C\\SQLEXPRESS;Database=SKLEP_FOTO;Trusted_Connection=True;";
 
         // GET: ZamowienieKlientController
         public ActionResult Index()
