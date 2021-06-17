@@ -13,7 +13,8 @@ namespace _15904_KleynaPHOTO.Controllers
 {
     public class ProductController : Controller
     {
-        string connectionString = @"Data Source=.;Initial Catalog=SKLEP_FOTO;Integrated Security=True";
+        //string connectionString = @"Data Source=.;Initial Catalog=SKLEP_FOTO;Integrated Security=True";
+        string connectionString = "Server=DESKTOP-OBAGE0C\\SQLEXPRESS;Database=SKLEP_FOTO;Trusted_Connection=True;";
 
         [Authorize(Roles = "Admin")]
         // GET: ProductController
